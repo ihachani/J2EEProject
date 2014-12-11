@@ -1,0 +1,82 @@
+html{
+    margin:0;
+    padding:0;
+    height:100%;
+}
+body {
+    margin:0;
+    padding:0;
+    padding-top: 70px;
+    height: 100%;
+}
+.background-main{
+    background-image: url("../assets/img/BookPage.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #464646;
+}
+.background-site{
+  background-color: #ebe6eb;
+}
+.warper{
+    min-height: 100%;
+    position:relative;
+}
+.center-container {
+    text-align:center;
+    height: 100%;
+    min-height: 100% !important;
+}
+
+.vcentre{
+    vertical-align: middle;
+}
+.index-search{
+    width: 70%;
+    margin: 0 auto;
+}
+.dropdown form{
+    padding: 5px 5px;
+}
+.explore-btn{
+    margin-top: 10px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+.explore-btn:hover{
+    background-color:  rgba(0,0,0,0.7) !important;
+}
+form .small{
+    color: #555555;
+    -moz-text-decoration-line: underline !important;
+    text-decoration-line: underline !important;
+    text-decoration-style: dashed !important;
+    -moz-text-decoration-style: dashed !important;
+    -webkit-text-decoration-line: underline !important;
+    -webkit-text-decoration-style: dashed !important;
+}
+form .small:hover{
+    color: #999999;
+}
+
+.sign-up{
+    margin: 15px 0;
+    padding: 0 15px;
+}
+.footer {
+    background-color: #005983;
+    bottom: 0;
+    min-height: 80px;
+    position: absolute;
+    width: 100%;
+    padding-top: 15px;
+    color: #000000;
+}
+.footer-seperator{
+    min-width: 100%;
+    background-color: #536362;
+    height: 3px;
+    position: absolute;
+    top: 0;
+}
