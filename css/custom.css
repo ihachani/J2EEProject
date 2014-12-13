@@ -7,6 +7,7 @@ body {
     margin:0;
     padding:0;
     padding-top: 70px;
+    margin-bottom: 70px;
     height: 100%;
 }
 .background-main{
@@ -79,4 +80,41 @@ form .small:hover{
     height: 3px;
     position: absolute;
     top: 0;
+}
+.bookpage-search{
+    padding-bottom: 20px;
+}
+
+.book-thumb .thumbnail {
+    position:relative;
+    overflow:hidden;
+    weight: 200px;
+}
+
+.book-thumb .caption {
+    position:absolute;
+    top:0;
+    right:0;
+    background:rgba(66, 139, 202, 0.75);
+    width:100%;
+    height:100%;
+    padding:2%;
+    display: none;
+    text-align:center;
+    color:#fff !important;
+    z-index:2;
+}
+.book-thumb .thumbnail img{
+    width:100%;
+    height:100%;
+
+}
+.book-thumb .caption h4{
+    padding-top: 10px;
+}
+.book-thumb .caption p{
+    padding-top: 5px;
+}
+.pagination-custom{
+    padding-bottom: 50px;
 }
