@@ -13,7 +13,14 @@ body {
     background: #464646 url("../assets/img/BookPage.jpg") no-repeat fixed center center;
 }
 .background-site{
-  background-color: #ebe6eb;
+    background: rgba(226,226,226,1);
+    background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 92%, rgba(254,254,254,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(226,226,226,1)), color-stop(92%, rgba(254,254,254,1)), color-stop(100%, rgba(254,254,254,1)));
+    background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 92%, rgba(254,254,254,1) 100%);
+    background: -o-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 92%, rgba(254,254,254,1) 100%);
+    background: -ms-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 92%, rgba(254,254,254,1) 100%);
+    background: linear-gradient(to bottom, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 92%, rgba(254,254,254,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0 );
 }
 .warper{
     min-height: 100%;
@@ -117,4 +124,18 @@ form .small:hover{
     -moz-box-shadow: 0px 1px 2px 2px rgba(145,145,145,1);
     box-shadow: 0px 1px 2px 2px rgba(145,145,145,1);
 
+}
+.alerts{
+    position: absolute;
+    top: 15px;
+    z-index: 2;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    left: 0;
+    right: 0;
+    display: inline-block !important;
+}
+.alerts > * {
+    text-align: center;
 }
