@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package metier;
 
 import DAO.DAOFactory;
@@ -13,25 +9,34 @@ import exceptions.KeyAlreadyExisted;
 import exceptions.KeysNotFound;
 import exceptions.UserEmailExisted;
 import exceptions.UserUsernameExisted;
-import exceptions.UtilisateurNotFound;
+import helper.Cryptography;
 import helper.IDataset;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Category;
 import model.Utilisateur;
 
-/**
- *
- * @author faiez
- */
 public class UtilisateurManager implements IUtilisateurManager {
 
     @Override
-    public Utilisateur authentifier(String username, String passwd) throws UtilisateurNotFound,CreatingStatementException, SQLException  {
+    public Utilisateur authentifier(String username, String passwd) throws CreatingStatementException, SQLException  {
         HashMap<String, String> selectors = new HashMap<String, String> ();
-        ArrayList<Utilisateur> utilisateurs = this.rechercher(null);
-        return utilisateurs.get(0);
+        selectors.put("username", username);
+        try {
+            selectors.put("password", Cryptography.MD5(passwd));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(UtilisateurManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UtilisateurManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ArrayList<Utilisateur> utilisateurs = this.rechercher(selectors);
+        if (utilisateurs != null) return utilisateurs.get(0);
+        return null;
     }
 
     @Override
@@ -50,6 +55,9 @@ public class UtilisateurManager implements IUtilisateurManager {
         if (utilisateursDataset.size() > 0) {
             throw new UserEmailExisted();
         }
+        selectors.clear();
+        selectors.put("username", u.getUsername());
+        utilisateursDataset = utilisateurDAO.rechercher(selectors, null);
         for (int i = 0; i < utilisateursDataset.size(); i++) {
             if (utilisateursDataset.get(i).getString("username").equals(u.getUsername())) {
                 throw new UserUsernameExisted();
@@ -68,16 +76,17 @@ public class UtilisateurManager implements IUtilisateurManager {
     }
 
     @Override
-    public ArrayList<Utilisateur> rechercher(HashMap<String, String> selectors) throws UtilisateurNotFound, CreatingStatementException, SQLException {
+    public ArrayList<Utilisateur> rechercher(HashMap<String, String> selectors) throws CreatingStatementException, SQLException {
         IUtilisateurDAO utilisateurDAO = DAOFactory.getInstance().createUtilisateurDAO();
         ArrayList<IDataset> utilisateursDataset = utilisateurDAO.rechercher(selectors, null);
         ArrayList<Utilisateur> resUtilisateurs = new ArrayList<Utilisateur>();
         for (int i = 0; i < utilisateursDataset.size(); i++) {
             IDataset currentDataset = utilisateursDataset.get(i);
             Utilisateur utilisateur = UtilisateurContainer.GetInstance().getUtilisateur(currentDataset.getInt("userID"));
-            resUtilisateurs.add(utilisateur);
+            if (utilisateur != null) resUtilisateurs.add(utilisateur);
         }
-        return resUtilisateurs;
+        if (resUtilisateurs.size() > 0) return resUtilisateurs;
+        return null;
     }
 
     @Override
@@ -88,16 +97,17 @@ public class UtilisateurManager implements IUtilisateurManager {
     }
 
     @Override
-    public ArrayList<Utilisateur> rechercherInscription(Category category) throws CreatingStatementException, SQLException, UtilisateurNotFound {
+    public ArrayList<Utilisateur> rechercherInscription(Category category) throws CreatingStatementException, SQLException {
         IUtilisateurDAO utilisateurDAO = DAOFactory.getInstance().createUtilisateurDAO();
-        ArrayList<IDataset> utilisateursDataset = utilisateurDAO.rechercherUtilisateurByCategory(category);
+        ArrayList<IDataset> utilisateursDataset = utilisateurDAO.rechercherUtilisateurInscruptionsByCategory(category);
         ArrayList<Utilisateur> resUtilisateurs = new ArrayList<Utilisateur>();
         for (int i = 0; i < utilisateursDataset.size(); i++) {
             IDataset currentDataset = utilisateursDataset.get(i);
             Utilisateur utilisateur = UtilisateurContainer.GetInstance().getUtilisateur(currentDataset.getInt("userID"));
-            resUtilisateurs.add(utilisateur);
+            if (utilisateur != null) resUtilisateurs.add(utilisateur);
         }
-        return resUtilisateurs;
+        if (resUtilisateurs.size() > 0) return resUtilisateurs;
+        return null;
     }
     
 }

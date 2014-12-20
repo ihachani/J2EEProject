@@ -1,20 +1,15 @@
 package model;
 
-/**
- * @author faiez
- * @version 1.0
- * @created 23-nov.-2014 10:51:00
- */
 public class Category {
 
     private int id;
     private String titre;
 
     public Category() {
-        this.id = -1;
+        this.id = 0;
         this.titre = null;
     }
-
+    
     public Category(int id, String titre) {
         this.id = id;
         this.titre = titre;
@@ -45,4 +40,4 @@ public class Category {
     }
 
 
-}//end Category
+}

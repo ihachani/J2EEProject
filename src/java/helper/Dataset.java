@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper;
 
 import java.util.Date;
 import java.util.HashMap;
 
-/**
- *
- * @author faiez
- */
 public class Dataset implements IDataset{
 
     private HashMap<String, Object> data = new HashMap<String, Object>();
@@ -67,9 +59,11 @@ public class Dataset implements IDataset{
             return ((Date) r);
         }
         if (r instanceof String) {
-            Date d = new Date();
-            d.setTime(Long.parseLong((String) r));
-            return (d);
+            if (! ((String) r).isEmpty()) {
+                Date d = new Date();
+                d.setTime(Long.parseLong((String) r));
+                return (d);
+           }
         }
         return null;
     }

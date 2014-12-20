@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import exceptions.CreatingStatementException;
@@ -13,10 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import model.Category;
 
-/**
- *
- * @author faiez
- */
 public interface ICategoryDAO {
     public ArrayList<IDataset> rechercher (HashMap<String, String> selectors, HashMap<String, String>  order) throws CreatingStatementException, SQLException;
     public int inserer (Category cat) throws KeyAlreadyExisted, CreatingStatementException;

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import exceptions.CreatingStatementException;
@@ -17,12 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 import model.Category;
 
-/**
- *
- * @author faiez
- */
+
 public class CategoryDAO implements ICategoryDAO {
 
+    protected static String entity = "category";
+    
     @Override
     public ArrayList<IDataset> rechercher(HashMap<String, String> selectors, HashMap<String, String> order) throws CreatingStatementException, SQLException{
         ArrayList<IDataset> result = new ArrayList<IDataset>();
@@ -32,24 +27,25 @@ public class CategoryDAO implements ICategoryDAO {
         if (selectors != null) {
             query += " WHERE ";
             for(Map.Entry<String, String> entry : selectors.entrySet()) {
-                query += "`"+entry.getKey()+"`="+entry.getValue()+" AND ";
+                query += "`"+entry.getKey()+"`='"+entry.getValue()+"' AND ";
             }
             query = query.substring(0, query.length()-4);
         }
         
         if (order != null) {
             query += " ORDER BY ";
-            for(Map.Entry<String, String> entry : selectors.entrySet()) {
+            for(Map.Entry<String, String> entry : order.entrySet()) {
                 query += "`"+entry.getKey()+"` "+entry.getValue()+", ";
             }
             query = query.substring(0, query.length()-2);
         }
-        
+        query +=";";
         ResultSet rs = stmt.executeQuery(query);
         while (rs.next()) {
             IDataset dataset = new Dataset();
             dataset.putInt("categoryID", rs.getInt("categoryID"));
             dataset.putString("titre", rs.getString("titre"));
+            dataset.setEntity(entity);
             result.add(dataset);
         }
         return result;
@@ -60,6 +56,7 @@ public class CategoryDAO implements ICategoryDAO {
         try {
             Statement stmt = DatabaseManager.getStatement();
             int categoryID = stmt. executeUpdate("INSERT INTO `category` (`categoryID`, `titre`) VALUES (NULL, '"+cat.getTitre()+"');", Statement.RETURN_GENERATED_KEYS);
+            
             cat.setId(categoryID);
             return categoryID;
         } catch (SQLException e) {
@@ -73,7 +70,7 @@ public class CategoryDAO implements ICategoryDAO {
         if (updates.isEmpty()) return -1;
         String query = "UPDATE `category` SET ";
         for(Map.Entry<String, String> entry : updates.entrySet()) {
-                query += "`"+entry.getKey()+"`="+entry.getValue()+", ";
+                query += "`"+entry.getKey()+"`='"+entry.getValue()+"', ";
         }
         query = query.substring(0, query.length()-2);
         query += "WHERE `categoryID` = "+c.getId()+";";

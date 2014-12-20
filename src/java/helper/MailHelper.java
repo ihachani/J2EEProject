@@ -5,7 +5,6 @@
 package helper;
 
 import exceptions.EMailCannotBeSent;
-import metier.MetierFactory;
 
 /**
  *

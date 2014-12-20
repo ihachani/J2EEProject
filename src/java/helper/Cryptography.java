@@ -15,11 +15,13 @@ import java.security.NoSuchAlgorithmException;
 public class Cryptography {
     
     public static String MD5 (String s) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        byte[] bytesOfMessage;
+        return s;
+        
+/**byte[] bytesOfMessage;
         bytesOfMessage = s.getBytes("UTF-8");
         MessageDigest md;
         md = MessageDigest.getInstance("MD5");
         byte[] thedigest = md.digest(bytesOfMessage);
-        return thedigest.toString();
+        return thedigest.toString(); */
     }
 }

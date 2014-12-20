@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import exceptions.CreatingStatementException;
@@ -11,10 +7,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author faiez
- */
 public class DatabaseManager {
     private static Connection connection;
     private static Statement statement;
@@ -41,5 +33,4 @@ public class DatabaseManager {
             throw new LoadingDriverException();
         }
     }
-    
 }

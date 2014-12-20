@@ -2,18 +2,13 @@ package model;
 
 import java.util.Date;
 
-/**
- * @author faiez
- * @version 1.0
- * @created 23-nov.-2014 10:50:58
- */
 public class DemandeLivre {
 
     private Date date;
     private int id;
     private String titre;
     private Utilisateur utilisateur;
-
+    
     public DemandeLivre(Date date, int id, String titre, Utilisateur utilisateur) {
         this.date = date;
         this.id = id;
@@ -61,4 +56,4 @@ public class DemandeLivre {
         return false;
     }
 
-}//end DemandeLivre
+}

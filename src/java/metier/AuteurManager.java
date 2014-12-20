@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package metier;
 
 import DAO.DAOFactory;
@@ -10,9 +6,6 @@ import DAO.ICategoryDAO;
 import DAO.IDAOFactory;
 import containers.AuteurContainer;
 import containers.CategoryContainer;
-import exceptions.AuteurNotFound;
-import exceptions.CategoryAlreayExisted;
-import exceptions.CategoryNotFound;
 import exceptions.CreatingStatementException;
 import exceptions.KeyAlreadyExisted;
 import exceptions.KeysNotFound;
@@ -23,10 +16,6 @@ import java.util.HashMap;
 import model.Auteur;
 import model.Category;
 
-/**
- *
- * @author faiez
- */
 public class AuteurManager implements IAuteurManager {
 
     @Override
@@ -45,16 +34,17 @@ public class AuteurManager implements IAuteurManager {
     }
 
     @Override
-    public ArrayList<Auteur> rechercher(HashMap<String, String> selectors) throws AuteurNotFound, CreatingStatementException, SQLException {
+    public ArrayList<Auteur> rechercher(HashMap<String, String> selectors) throws CreatingStatementException, SQLException {
         IAuteurDAO daoAuteur = DAOFactory.getInstance().createAuteurDAO();
         ArrayList<IDataset> auteursDataset = daoAuteur.rechercher(selectors, null);
         ArrayList<Auteur> resAuteurs = new ArrayList<Auteur>();
         for (int i = 0; i < auteursDataset.size(); i++) {
             IDataset currentDataset = auteursDataset.get(i);
             Auteur auteur = AuteurContainer.GetInstance().getAuteur(currentDataset.getInt("auteurID"));
-            resAuteurs.add(auteur);
+            if (auteur != null) resAuteurs.add(auteur);
         }
-        return resAuteurs;
+        if (resAuteurs.size() > 0) return resAuteurs;
+        return null;
     }
 
     @Override
@@ -64,4 +54,18 @@ public class AuteurManager implements IAuteurManager {
         return state;
     }
     
+    @Override
+    public ArrayList<Auteur> extractAuteurs(ArrayList<String> RequestAuteurs) throws CreatingStatementException, SQLException, KeyAlreadyExisted {
+        IAuteurManager auteurManager = MetierRegistry.auteurManager;
+        ArrayList<Auteur> livreAuteurs = new ArrayList<Auteur>();
+        for (int i = 0; i < RequestAuteurs.size(); i++) {
+            HashMap<String, String> selectors = new HashMap<String, String>();
+            selectors.put("nom", RequestAuteurs.get(i));
+            Auteur currentAuteur = null;
+            ArrayList<Auteur> auteur = auteurManager.rechercher(selectors);
+            if (auteur != null) livreAuteurs.add(auteur.get(0));
+        }
+        if (!livreAuteurs.isEmpty()) return livreAuteurs;
+        return null;
+    }
 }

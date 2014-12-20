@@ -1,10 +1,5 @@
 package model;
 
-/**
- * @author faiez
- * @version 1.0
- * @created 23-nov.-2014 10:50:59
- */
 public class Auteur {
 
     private int id;
@@ -39,4 +34,4 @@ public class Auteur {
         return false;
     }
 
-}//end Auteur
+}

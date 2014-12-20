@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package containers;
 
 import DAO.DAOFactory;
 import DAO.IAuteurDAO;
-import exceptions.AuteurNotFound;
 import exceptions.CreatingStatementException;
 import helper.IDataset;
 import java.sql.SQLException;
@@ -14,21 +9,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import model.Auteur;
 
-/**
- *
- * @author faiez
- */
-public class AuteurContainer {
+public class AuteurContainer implements IAuteurContainer {
+    
     private HashMap<Integer, Auteur> auteurs = new HashMap<Integer, Auteur> ();
     
-    public Auteur getAuteur (int key) throws AuteurNotFound, CreatingStatementException, SQLException {
+    @Override
+    public Auteur getAuteur (int key) throws CreatingStatementException, SQLException {
         Auteur auteur = auteurs.get(key);
         if(auteur != null) {
             return auteur;
         }
        auteur = this.loadAuteur(key);
         if (auteur == null)  {
-            throw new AuteurNotFound();
+            return null;
         }
         auteurs.put(new Integer(auteur.getId()), auteur);
         return auteur;
@@ -40,8 +33,13 @@ public class AuteurContainer {
         selectors.put("auteurID", Integer.toString(key));
         ArrayList<IDataset> auteursData = auteurDAO.rechercher(selectors, null);
         if (auteursData.size() == 0) return null;
-        Auteur auteur = new Auteur(auteursData.get(0).getInt ("auteurID"), auteursData.get(0).getString ("nom"));
+        Auteur auteur = createAuteur(auteursData.get(0));;
         return auteur;
+    }
+    
+    @Override
+    public Auteur createAuteur (IDataset dataset) {
+        return new Auteur(dataset.getInt ("auteurID"), dataset.getString ("nom"));
     }
     
     private static AuteurContainer auteurContainer;

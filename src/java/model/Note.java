@@ -2,23 +2,16 @@ package model;
 
 import java.util.Date;
 
-
-
-/**
- * @author faiez
- * @version 1.0
- * @created 23-nov.-2014 10:47:36
- */
 public class Note {
 
     private Livre livre;
     private Date date;
     private int id;
-    private double rate;
+    private int rate;
     private String review;
     private Utilisateur utilisateur;
 
-    public Note(Livre livre, Date date, int id, double rate, String review, Utilisateur utilisateur) {
+    public Note(Livre livre, Date date, int id, int rate, String review, Utilisateur utilisateur) {
         this.livre = livre;
         this.date = date;
         this.id = id;
@@ -51,11 +44,11 @@ public class Note {
         this.livre = livre;
     }
 
-    public double getRate() {
-        return rate;
+    public int getRate() {
+        return new Integer((new Double(Math.ceil((double) rate ))).intValue()) ;
     }
 
-    public void setRate(double rate) {
+    public void setRate(int rate) {
         this.rate = rate;
     }
 
@@ -84,4 +77,4 @@ public class Note {
     }
 
 	
-}//end Note
+}

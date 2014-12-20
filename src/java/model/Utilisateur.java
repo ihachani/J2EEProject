@@ -3,11 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * @author faiez
- * @version 1.0
- * @created 23-nov.-2014 10:50:56
- */
 public class Utilisateur {
 
     private Date dateInscription;
@@ -17,19 +12,7 @@ public class Utilisateur {
     private String pays;
     private String username;
     private String email;
-
-    public Utilisateur () {
-        this.dateInscription = null;
-        this.dayNaissance = 0;
-        this.monthNaissance = 0;
-        this.yearNaissance = 0;
-        this.id = -1;
-        this.interests = new ArrayList<String>();;
-        this.password = null;
-        this.pays = null;
-        this.username = null;
-        this.email = null; 
-    }
+    private int state;
     
     public Utilisateur(int id, Date dateInscription, Date dateNaissance, ArrayList<String> interests, String password, String pays, String username, String email) {
         this.dateInscription = dateInscription;
@@ -42,6 +25,7 @@ public class Utilisateur {
         this.pays = pays;
         this.username = username;
         this.email = email;
+        this.state = 0;
     }
     
     public Utilisateur(Date dateInscription, Date dateNaissance, ArrayList<String> interests, String password, String pays, String username, String email) {
@@ -58,7 +42,7 @@ public class Utilisateur {
     }
 
     public int isAdmin(){
-            return 0;
+            return state;
     }
 
     public Date getDateInscription() {
@@ -190,8 +174,15 @@ public class Utilisateur {
     public void setYearNaissance(int yearNaissance) {
         this.yearNaissance = yearNaissance;
     }
-
     
+    public int getState () {
+        return state;
+    }
 
+    public void setState(int state) {
+        this.state = state;
+    }
     
-}//end Utilisateur
+    
+    
+}

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import exceptions.CreatingStatementException;
@@ -14,10 +10,6 @@ import java.util.HashMap;
 import model.Category;
 import model.Utilisateur;
 
-/**
- *
- * @author faiez
- */
 public interface IUtilisateurDAO {
     public ArrayList<IDataset> rechercher (HashMap<String, String> selectors,HashMap<String, String>  order) throws CreatingStatementException, SQLException;
     public int inserer (Utilisateur utilisateur) throws KeyAlreadyExisted, CreatingStatementException;
@@ -25,6 +17,6 @@ public interface IUtilisateurDAO {
     public int supprimer(Utilisateur utilisateur)  throws KeysNotFound, CreatingStatementException;
     public int inscrireUtilisateurCategory(Utilisateur u, Category c) throws KeyAlreadyExisted, CreatingStatementException;
     public int supprimerUtilisateurCategory(Utilisateur u, Category c) throws CreatingStatementException, KeysNotFound;
-    public ArrayList<IDataset> rechercherUtilisateurByCategory(Category c) throws CreatingStatementException, SQLException;
-    public ArrayList<IDataset> rechercherCategoryByUtilisateur(Utilisateur u) throws CreatingStatementException, SQLException;
+    public ArrayList<IDataset> rechercherUtilisateurInscruptionsByCategory(Category c) throws CreatingStatementException, SQLException;
+    public ArrayList<IDataset> rechercherCategoryInscruptionsByUtilisateur(Utilisateur u) throws CreatingStatementException, SQLException;
 }

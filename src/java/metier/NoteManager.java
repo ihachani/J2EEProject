@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package metier;
 
 import DAO.DAOFactory;
@@ -10,7 +6,6 @@ import containers.UtilisateurContainer;
 import exceptions.CreatingStatementException;
 import exceptions.KeyAlreadyExisted;
 import exceptions.KeysNotFound;
-import exceptions.UtilisateurNotFound;
 import helper.IDataset;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,10 +14,6 @@ import model.Livre;
 import model.Note;
 import model.Utilisateur;
 
-/**
- *
- * @author faiez
- */
 public class NoteManager implements INoteManager {
 
     @Override
@@ -34,7 +25,7 @@ public class NoteManager implements INoteManager {
     }
 
     @Override
-    public ArrayList<Note> rechercherNote(Livre livre, HashMap<String, String> order) throws UtilisateurNotFound, CreatingStatementException, SQLException{
+    public ArrayList<Note> rechercherNote(Livre livre, HashMap<String, String> order) throws CreatingStatementException, SQLException{
         INoteDAO noteDAO = DAOFactory.getInstance().createNoteDAO();
         HashMap<String, String> selectors = new HashMap<String, String>();
         selectors.put("livreISBN", livre.getIsbn());
@@ -43,7 +34,7 @@ public class NoteManager implements INoteManager {
         for (int i = 0; i < noteDataset.size(); i++) {
             IDataset currentDataset = noteDataset.get(i);
             Utilisateur utilisateur = UtilisateurContainer.GetInstance().getUtilisateur(currentDataset.getInt("userID"));
-            Note note = new Note(livre, currentDataset.getDate("date"), currentDataset.getInt("noteID"), currentDataset.getDouble("rate"), currentDataset.getString("review"), utilisateur);
+            Note note = new Note(livre, currentDataset.getDate("date"), currentDataset.getInt("noteID"), currentDataset.getInt("rate"), currentDataset.getString("review"), utilisateur);
             resNotes.add(note);
         }
         return resNotes;

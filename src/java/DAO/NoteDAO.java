@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import exceptions.CreatingStatementException;
@@ -17,12 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 import model.Note;
 
-/**
- *
- * @author faiez
- */
 public class NoteDAO implements INoteDAO{
 
+    protected static String entity = "note";
+    
     @Override
     public ArrayList<IDataset> rechercher(HashMap<String, String> selectors, HashMap<String, String> order) throws CreatingStatementException, SQLException{
         ArrayList<IDataset> result = new ArrayList<IDataset>();
@@ -31,19 +25,19 @@ public class NoteDAO implements INoteDAO{
         if (selectors != null) {
             query += " WHERE ";
             for(Map.Entry<String, String> entry : selectors.entrySet()) {
-                query += "`"+entry.getKey()+"`="+entry.getValue()+" AND ";
+                query += "`"+entry.getKey()+"`=\""+entry.getValue()+"\" AND ";
             }
             query = query.substring(0, query.length()-4);
         }
         
         if (order != null) {
             query += " ORDER BY ";
-            for(Map.Entry<String, String> entry : selectors.entrySet()) {
+            for(Map.Entry<String, String> entry : order.entrySet()) {
                 query += "`"+entry.getKey()+"` "+entry.getValue()+", ";
             }
             query = query.substring(0, query.length()-2);
         }
-
+        query +=";";
         ResultSet rs = stmt.executeQuery(query);
         while (rs.next()) {
             IDataset dataset = new Dataset();
@@ -53,6 +47,7 @@ public class NoteDAO implements INoteDAO{
             dataset.putString("date", rs.getString("date"));
             dataset.putInt("rate", rs.getInt("rate"));
             dataset.putString("review", rs.getString("review"));
+            dataset.setEntity(entity);
             result.add(dataset);
         }
         return result;
@@ -74,7 +69,7 @@ public class NoteDAO implements INoteDAO{
     public int supprimer(Note note) throws KeysNotFound, CreatingStatementException {
         try {
             Statement stmt = DatabaseManager.getStatement();
-            int rs = stmt.executeUpdate("DELETE FROM `note` WHERE `noteID` = "+note.getId()+";");
+            int rs = stmt.executeUpdate("DELETE FROM `note` WHERE `noteID` = \""+note.getId()+"\";");
             return rs;
         } catch (SQLException e) {
             throw new KeysNotFound();

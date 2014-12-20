@@ -3,11 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * @author faiez
- * @version 1.0
- * @created 23-nov.-2014 10:51:00
- */
 public class Livre {
 
     private String cover;
@@ -15,6 +10,7 @@ public class Livre {
     private int dayPublication;
     private int monthPublication;
     private int yearPublication;
+    private int views;
     private String description;
     private String isbn;
     private String langue;
@@ -23,24 +19,8 @@ public class Livre {
     private ArrayList<Auteur> auteurs;
     private Utilisateur utilisateur;
     private int state;
-
-    public Livre () {
-        this.cover = null;
-        this.dateAjout = null;
-        this.dayPublication = 0;
-        this.monthPublication = 0;
-        this.yearPublication = 0;
-        this.description = null;
-        this.isbn = null;
-        this.langue = null;
-        this.titre = null;
-        this.category = null;
-        this.auteurs = null;
-        this.utilisateur = null;
-        this.state = 0;
-    }
     
-    public Livre(String cover, Date dateAjout, Date datePublication, String description, String isbn, String langue, String titre, Category category, ArrayList<Auteur> auteurs, Utilisateur utilisateur, int state) {
+    public Livre(String cover, Date dateAjout, Date datePublication, String description, String isbn, String langue, String titre, Category category, ArrayList<Auteur> auteurs, Utilisateur utilisateur, int state, int views) {
         this.cover = cover;
         this.dateAjout = dateAjout;
         this.dayPublication = datePublication.getDay();
@@ -54,6 +34,7 @@ public class Livre {
         this.auteurs = auteurs;
         this.utilisateur = utilisateur;
         this.state = state;
+        this.views = views;
     }
 
     public ArrayList<Auteur> getAuteurs() {
@@ -170,7 +151,17 @@ public class Livre {
         this.yearPublication = yearPublication;
     }
 
-    
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public void addView () {
+        this.views = this.views + 1;
+    }
     
     @Override
     public boolean equals(Object o) {
@@ -180,4 +171,4 @@ public class Livre {
         return false;
     }
 
-}//end Livre
+}

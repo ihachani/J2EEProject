@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import exceptions.CreatingStatementException;
@@ -24,6 +20,8 @@ import model.Auteur;
  */
 public class AuteurDAO implements IAuteurDAO {
 
+    protected static String entity = "auteur";
+    
     @Override
     public ArrayList<IDataset> rechercher(HashMap<String, String> selectors, HashMap<String, String> order) throws CreatingStatementException, SQLException{
         ArrayList<IDataset> result = new ArrayList<IDataset>();
@@ -39,17 +37,18 @@ public class AuteurDAO implements IAuteurDAO {
         
         if (order != null) {
             query += " ORDER BY ";
-            for(Entry<String, String> entry : selectors.entrySet()) {
+            for(Entry<String, String> entry : order.entrySet()) {
                 query += "`"+entry.getKey()+"` "+entry.getValue()+", ";
             }
             query = query.substring(0, query.length()-2);
         }
-
+        query +=";";
         ResultSet rs = stmt.executeQuery(query);
         while (rs.next()) {
             IDataset dataset = new Dataset();
             dataset.putInt("auteurID", rs.getInt("auteurID"));
             dataset.putString("nom", rs.getString("nom"));
+            dataset.setEntity(entity);
             result.add(dataset);
         }
         return result;

@@ -1,15 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-import metier.MetierFactory;
 
-/**
- *
- * @author faiez
- */
 public class DAOFactory implements IDAOFactory{
 
     @Override

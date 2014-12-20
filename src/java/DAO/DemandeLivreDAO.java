@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import exceptions.CreatingStatementException;
@@ -17,33 +13,32 @@ import java.util.HashMap;
 import java.util.Map;
 import model.DemandeLivre;
 
-/**
- *
- * @author faiez
- */
 public class DemandeLivreDAO implements IDemandeLivreDAO{
 
+    protected static String entity = "demandelivre";
+    
     @Override
     public ArrayList<IDataset> rechercher(HashMap<String, String> selectors, HashMap<String, String> order) throws CreatingStatementException, SQLException{
         ArrayList<IDataset> result = new ArrayList<IDataset>();
         Statement stmt = DatabaseManager.getStatement();
         String query = "SELECT * FROM `demandelivre`";
-        if (selectors != null) {
+        if ((selectors != null) && (!selectors.isEmpty())) {
             query += " WHERE ";
             for(Map.Entry<String, String> entry : selectors.entrySet()) {
-                query += "`"+entry.getKey()+"`="+entry.getValue()+" AND ";
+                query += "`"+entry.getKey()+"`=\""+entry.getValue()+"\" AND ";
             }
             query = query.substring(0, query.length()-4);
         }
         
         if (order != null) {
             query += " ORDER BY ";
-            for(Map.Entry<String, String> entry : selectors.entrySet()) {
+            for(Map.Entry<String, String> entry : order.entrySet()) {
                 query += "`"+entry.getKey()+"` "+entry.getValue()+", ";
             }
             query = query.substring(0, query.length()-2);
         }
-
+        query +=";";
+        
         ResultSet rs = stmt.executeQuery(query);
         while (rs.next()) {
             IDataset dataset = new Dataset();
@@ -51,6 +46,7 @@ public class DemandeLivreDAO implements IDemandeLivreDAO{
             dataset.putInt("userID", rs.getInt("userID"));
             dataset.putString("titre", rs.getString("titre"));
             dataset.putString("date", rs.getString("date"));
+            dataset.setEntity(entity);
             result.add(dataset);
         }
         return result;
@@ -72,7 +68,7 @@ public class DemandeLivreDAO implements IDemandeLivreDAO{
     public int supprimer(DemandeLivre demande) throws KeysNotFound, CreatingStatementException {
         try {
             Statement stmt = DatabaseManager.getStatement();
-            int rs = stmt.executeUpdate("DELETE FROM `demandelivre` WHERE `demandeID` = "+demande.getId()+";");
+            int rs = stmt.executeUpdate("DELETE FROM `demandelivre` WHERE `demandeID` = \""+demande.getId()+"\";");
             return rs;
         } catch (SQLException e) {
             throw new KeysNotFound();
