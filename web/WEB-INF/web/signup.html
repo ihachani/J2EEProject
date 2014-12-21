@@ -13,6 +13,41 @@
 </head>
 <!-- We can add facebook google+ and twitter signups logins-->
 <body class="background-site">
+
+        <div class="container ">
+            <div class="row">
+                <div class="">
+                    <form class="form" method="post">
+
+                        <div class="form-group">
+                            <label class="sr-only" for="user">Username</label>
+                            <label for="user">Username</label>
+                            <input type="text" placeholder="Username" required="" id="user" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="sr-only" for="pass">Password</label>
+                            <label for="pass">Password</label>
+                            <input type="password" placeholder="Password" required="" id="pass" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="sr-only" for="c_pass">Confirm Password</label>
+                            <label for="c_pass">Confirm Password</label>
+                            <input type="password" placeholder="Confirm Password" required="" id="c_pass" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="sr-only" for="email">Email Adress</label>
+                            <label for="email">Email Adress</label>
+                            <input type="email" placeholder="Email" required="" id="email" class="form-control">
+                        </div>
+                        <a href="#" type="submit" class="btn btn-primary">Submit</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--nav start-->
         <nav id="main-navbar" role="navigation" class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -79,29 +114,26 @@
             </div>
         </nav>
         <!-- nav ends -->
-        <div class="container ">
-            <div class="row">
-                <div class="">
-                    <form class="form" method="post">
+        <!-- Footer-->
+        <div class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <p class="navbar-text pull-left">© 2014 - Site Built By Mr. M.
+                    <a href="http://tinyurl.com/tbvalid" target="_blank" >HTML 5 Validation</a>
+                </p>
 
-                        <label class="sr-only" for="user">Username</label>
-                        <input type="text" placeholder="Username" required="" id="user" class="form-control sign-up">
-
-                        <label class="sr-only" for="pass">Password</label>
-                        <input type="password" placeholder="Password" required="" id="pass" class="form-control sign-up">
-
-                        <label class="sr-only" for="c_pass">Confirm Password</label>
-                        <input type="password" placeholder="Confirm Password" required="" id="c_pass" class="form-control sign-up">
-
-                        <label class="sr-only" for="email">Email Adress</label>
-                        <input type="email" placeholder="Email" required="" id="email" class="form-control sign-up">
-                        <a href="#" type="submit" class="btn btn-primary">Submit</a>
-                    </form>
-                </div>
+                <a class="navbar-btn btn-social-icon btn-twitter pull-right">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="navbar-btn btn-social-icon btn-facebook pull-right">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="navbar-btn btn-social-icon btn-google-plus pull-right">
+                    <i class="fa fa-google-plus"></i>
+                </a>
             </div>
         </div>
-
-    <footer class="footer">
+        <!--Footer Ends -->
+<!--    <footer class="footer">
         <div class="footer-seperator">
 
         </div>
@@ -121,7 +153,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>-->
     <!-- javascript -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
