@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/img/book.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script src="js/respond.js"></script>
+    <title>Read it</title>
+</head>
+<body class="background-main">
+    <div class="warper container-fluid center-container">
+            <div class="vcentre">
+                <div class="input-group input-group-lg index-search col-xs-12 col-sm-8 col-sm-offset-2 ">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="button"><span class=" glyphicon glyphicon-search"></span></button>
+                        <button class="btn btn-primary" type="button"><span class=" glyphicon glyphicon-tags"></span></button>
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <a class="btn btn-lg btn-primary explore-btn" href="booklist.html">Explore!</a>
+            </div>
+
+        <nav id="main-navbar" role="navigation" class="navbar navbar-default navbar-fixed-top" style="-webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="./index.html" class="navbar-brand"><span class=" glyphicon glyphicon-book"></span> Read it</a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="./index.html">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Books<span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="booklist.html">View All</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="./signup.html">Sign-up</a></li>
+                        <!--Signin Dropdown-->
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Login<span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <form class="form-signin" role="form">
+                                    <li>
+                                        <label for="inputEmail" class="sr-only">Email address</label>
+                                        <input style=" background-repeat: no-repeat; background-attachment: scroll; background-position: right center; cursor: auto;" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+                                    </li>
+                                    <li>
+                                        <label for="inputPassword" class="sr-only">Password</label>
+                                        <input style=" background-repeat: no-repeat; background-attachment: scroll; background-position: right center; cursor: auto;" id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+                                    </li>
+                                    <li>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input value="remember-me" type="checkbox"> Remember me
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-sm btn-primary btn-block" type="submit">Sign in</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="small"> Forgot password</a>
+                                    </li>
+                                </form>
+                            </ul>
+                        </li>
+                        <!--Sign-in Dropdown -->
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <!-- nav ends -->
+
+
+
+    </div>
+    <!-- for xs-devices -->
+
+
+    <!-- javascript -->
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        jQuery.fn.verticalAlign = function ()
+        {
+            return this
+                    .css("margin-top",($(this).parent()
+                            .height() - $(this).height())/2 + 'px' )
+        };
+        $(function () {
+            //$('.center-container').height($(document).height() - 70);
+            $('.vcentre').verticalAlign();
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/img/book.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script src="js/respond.js"></script>
+    <title>Read it - Add Book Form</title>
+</head>
+<body class="background-site">
+    <div class="container pagination-custom">
+        <form class="form" method="post">
+
+           <div class="form-group">
+               <label class="sr-only" for="title">Title</label>
+               <label for="title">Title:</label>
+               <input type="text" placeholder="Title" required="" id="title" class="form-control ">
+           </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="author">Author</label>
+                <label for="author">Author:</label>
+                <input type="text" placeholder="Author" required="" id="author" class="form-control ">
+            </div>
+
+            <div class="form-group">
+                <label class="sr-only" for="ISBN">ISBN</label>
+                <label for="ISBN">ISBN:</label>
+                <input type="text" placeholder="ISBN" required="" id="ISBN" class="form-control ">
+            </div>
+
+            <div class="form-group" >
+                <label for="category">Category:</label>
+                <br>
+                <select name="category[]" class="selectpicker" multiple id="category" data-style="btn-primary">
+                    <option>Mustard</option>
+                    <option>Ketchup</option>
+                    <option>Relish</option>
+                </select>
+            </div>
+            <div class="form-group" >
+                <label for="language">Language:</label>
+                <br>
+                <select name="language[]" class="selectpicker"  id="language" data-style="btn-primary">
+                    <option>Mustard</option>
+                    <option>Ketchup</option>
+                    <option>Relish</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="description">Description</label>
+                <label for="description">Description:</label>
+                <textarea class="form-control" rows="3" id="description"></textarea>
+            </div>
+            <a href="#" type="submit" class="btn btn-primary">Submit</a>
+        </form>
+        <div class="visible-xs pagination-custom"></div>
+    </div>
+
+
+    <!-- nav Start -->
+    <nav id="main-navbar" role="navigation" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="./index.html" class="navbar-brand"><span class=" glyphicon glyphicon-book"></span> Read it</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="./index.html">Home <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Books<span class="caret"></span></a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li><a href="booklist.html">View All</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./signup.html">Sign-up</a></li>
+                    <!--Signin Dropdown-->
+                    <li class="dropdown">
+                        <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Login<span class="caret"></span></a>
+                        <ul role="menu" class="dropdown-menu">
+                            <form class="form-signin" role="form">
+                                <li>
+                                    <label for="inputEmail" class="sr-only">Email address</label>
+                                    <input style=" background-repeat: no-repeat; background-attachment: scroll; background-position: right center; cursor: auto;" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+                                </li>
+                                <li>
+                                    <label for="inputPassword" class="sr-only">Password</label>
+                                    <input style=" background-repeat: no-repeat; background-attachment: scroll; background-position: right center; cursor: auto;" id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+                                </li>
+                                <li>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input value="remember-me" type="checkbox"> Remember me
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="btn btn-sm btn-primary btn-block" type="submit">Sign in</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="small"> Forgot password</a>
+                                </li>
+                            </form>
+                        </ul>
+                    </li>
+                    <!--Sign-in Dropdown -->
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <!-- nav ends -->
+    <!-- Footer-->
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text pull-left">© 2014 - Site Built By Mr. M.
+                <a href="http://tinyurl.com/tbvalid" target="_blank" >HTML 5 Validation</a>
+            </p>
+
+            <a class="navbar-btn btn-social-icon btn-twitter pull-right">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a class="navbar-btn btn-social-icon btn-facebook pull-right">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a class="navbar-btn btn-social-icon btn-google-plus pull-right">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </div>
+    </div>
+    <!--Footer Ends -->
+    <!-- javascript -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script>
+        $(function () {
+            $('.selectpicker').selectpicker();
+        });
+
+    </script>
+</body>
+</html>
